@@ -23,7 +23,9 @@
 		h1 {font-size:35px;}
 		h2 {font-size:23px;}
 		h3 {font-size:18px;}
-		label {font-size:18px;}
+		h4{margin-bottom: 5px;}
+		label {font-size:18px;
+		    margin: 20px 0px 8px 0px;}
 		.radios,.name,.telephone-number {
 			display: flex;
 				flex-direction: column;
@@ -33,7 +35,8 @@
 			padding:20px;
 			font-weight: normal;
 			display: inline-table;
-			margin-bottom:10px;
+			margin:5px 0px;
+			font-size: 16px;
 		}
 		header{
 			background: #219793;
@@ -82,8 +85,8 @@
 			background-size:185px 46px;
 			width:185px;
 			height:46px;
-    margin: 14px 50px;
-    float: left;
+		    margin: 14px 50px;
+		    float: left;
 		}		
 		div.breadcrumb {
 			background:#515050;
@@ -103,6 +106,19 @@
 		}
 		.main-content{width:515px;}
 		.sidebar-title {margin-top:0px;}
+
+		*:focus {
+		outline: none;
+		}
+		input:focus {
+		outline: #FCBE47 solid 2px;
+		}
+		input[type=submit]:focus{
+		outline: #FCBE47 solid 2px;
+		}
+		.btn-submit {
+			margin:50px 10px 0px 0px;
+		}
 		</style>
 	</head>
 	<body>
@@ -136,36 +152,47 @@
 				<h1>Your details</h1>
 				<p>Some introductory text as to why we need this information could go here, it’ll help keep things clear for the customer and make sure that things are transparent.</p>
 				<h4>Are you completing this assessment for<span class="required">*</span></h3>
-				<form action="">
+
+
+				<form name="myForm" action="someAction" method="GET" onsubmit="validateMyForm()">
+					
+					
 					<div class="radios">
-						<label for=""><input type="radio" name="" value=""> yourself</label>
-						<label for=""><input type="radio" name="" value=""> someone else</label>
+						<span id="radio-error" class=" error" style="display:none;">Please choose</span>
+						<label for="yourself"><input type="radio"  name="choices" id="yourself" value="yourself"> yourself</label>
+						<label for="someone"><input type="radio" name="choices" id="someone" value="someone"> someone else</label>
 					</div>
 					
 					<div class="name">
-						
+
 						<label for="first-name">First name<span class="required">*</span></label>
+						<span id="first-name-error" class=" error" style="display:none;">Please fill in your first name</span>
+
 						<input id="first-name" type="text">
 						
 						<label for="last-name">Last name<span class="required">*</span></label>
+						<span id="last-name-error" class="error" style="display:none;">Please fill in your last name</span>
+
 						<input id="last-name" type="text">
 						
 					</div>
 					
 					<div class="telephone-number">
 						
+
 						<label for="telephone-number">Telephone number<span class="required">*</span></label>
-						<span class="error">Can't be blank</span>
+
+						<span id="telephone-number-error" class="error" style="display:none;">Telephone number must be a number</span>
 						<input id="telephone-number" type="text">
 						
 					</div>
 					
 					<div class="date-of-birth">
-						
-						<label for="">Date of birth<span class="required">*</span></label>
-						<p>
-							<span class="date-tip">For example, 19 1 1972</span>
-						</p>
+
+
+						<label for="">Date of birth<span class="required">*</span></label><br>
+						<span class="date-tip">For example, 19 1 1972</span><br>
+						<span class="date-of-birth error">Please fill your date of birth</span>
 						
 						<div class="day-month-year">
 							<div>
@@ -183,10 +210,71 @@
 						</div>
 					</div>
 					
-					<button type="submit">Save and continue</button>
+					<button class="btn-submit" type="submit" >Save and continue</button>
+					
+					<p>
+					<a href="#">Back</a>
+					</p>
 				</form>
+
+
+					<script type="text/javascript">
+						
+						function validateMyForm()
+							{
+
+							document.getElementById("radio-error").style.display = 'none';
+							document.getElementById("first-name-error").style.display = 'none';
+							document.getElementById("last-name-error").style.display = 'none';
+							document.getElementById("telephone-number-error").style.display = 'none';
+
+							var error = true;
+							var radios = document.getElementsByName("choices");
+
+							for (var i = 0, length = radios.length; i < length; i++) {
+							    if (radios[i].checked) {
+							        //alert(radios[i].value);
+							        error = false;
+							        break;
+							    }
+							}
+
+							if(error){
+								error +="Please check a checkbox";
+								document.getElementById("radio-error").style.display = 'block';
+							}
+
+							var firstName = document.getElementById('first-name').value; 
+						    if(!firstName.match(/\S/)) {
+								error +="Please fill in your first name";
+								document.getElementById("first-name-error").style.display = 'block';
+						    }
+
+							var lastName = document.getElementById('last-name').value; 
+						    if(!lastName.match(/\S/)) {
+								error +="Please fill in your last name";
+								document.getElementById("last-name-error").style.display = 'block';
+						    }
+
+							var telephone = document.getElementById('telephone-number').value; 
+
+							if(isNaN(telephone)){
+								error +="Telephone number must be a number";
+								document.getElementById("telephone-number-error").style.display = 'block';
+							}
+
+							if(error)
+							{ 
+								event.preventDefault();
+								return false;
+							}
+							  	return true;
+							}
+
+					</script>
 			</div>
 		</div>
 		</main>
 	</body>
+
 </html>
