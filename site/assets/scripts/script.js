@@ -1,9 +1,10 @@
 function validateMyForm()
 	{
-		//declare variables at the top...
+
 		var doberror = '';
 		var error = true;
 
+		//reset all the styles for the errors each time form is submitted
 		document.getElementById("radio-error").style.display = 'none';
 		document.getElementById("first-name-error").style.display = 'none';
 		document.getElementById("first-name").style.border = '1px solid #BBBBBB';
@@ -19,8 +20,8 @@ function validateMyForm()
 		document.getElementById("month").style.border = '1px solid #BBBBBB';
 		document.getElementById("year").style.border = '1px solid #BBBBBB';
 
+		//check if any of the radio buttons are checked
 		var radios = document.getElementsByName("choices");
-
 		for (var i = 0, length = radios.length; i < length; i++) {
 		    if (radios[i].checked) {
 		        //alert(radios[i].value);
@@ -78,6 +79,9 @@ function validateMyForm()
 
 		var year = document.getElementById('year').value;
 		if((!year.match(/\S/)) || (isNaN(year))){
+
+			console.log(year);
+
 			error +="Year must be a number\n";
 			doberror+="Year must be a number<br>";
 			document.getElementById("date-of-birth-error").style.display = 'block';
@@ -85,8 +89,13 @@ function validateMyForm()
 			document.getElementById("year").style.border = '#B10D1E solid 1px';
 		}
 
+		if(error)
+		{ 
+			event.preventDefault();
+			return false;
+		}
+
 		if(!isValidDate(day,month,year)){
-			//output the message saying the date should be in the right format
 			error +="Date is not in the correct format\n";
 			doberror +="Date is not in the correct format<br>";
 			document.getElementById("date-of-birth-error").style.display = 'block';
@@ -94,12 +103,6 @@ function validateMyForm()
 			document.getElementById("day").style.border = '#B10D1E solid 1px';
 			document.getElementById("month").style.border = '#B10D1E solid 1px';
 			document.getElementById("year").style.border = '#B10D1E solid 1px';
-		}
-
-
-		if(error)
-		{ 
-			console.log(error);
 			event.preventDefault();
 			return false;
 		}
@@ -111,15 +114,14 @@ function validateMyForm()
 
 function isValidDate(day,month,year)
 {
-
     // Parse the date parts to integers
     var day = parseInt(day, 10);
     var month = parseInt(month, 10);
     var year = parseInt(year, 10);
 
-   	if(isNaN(day)||isNaN(month)||isNaN(year)){
-   		return false;
-   	}
+   	// if(isNaN(day)||isNaN(month)||isNaN(year)){
+   	// 	return false;
+   	// }
 
     //Check the ranges of month and year
     if(year < 1000 || year > 3000 || month == 0 || month > 12)
