@@ -85,7 +85,6 @@ function validateMyForm()
 			document.getElementById("year").style.border = '#B10D1E solid 1px';
 		}
 
-
 		if(!isValidDate(day,month,year)){
 			//output the message saying the date should be in the right format
 			error +="Date is not in the correct format\n";
@@ -107,7 +106,7 @@ function validateMyForm()
 
 	return true;
 
-	}
+}
 
 
 function isValidDate(day,month,year)
@@ -117,6 +116,10 @@ function isValidDate(day,month,year)
     var day = parseInt(day, 10);
     var month = parseInt(month, 10);
     var year = parseInt(year, 10);
+
+   	if(isNaN(day)||isNaN(month)||isNaN(year)){
+   		return false;
+   	}
 
     //Check the ranges of month and year
     if(year < 1000 || year > 3000 || month == 0 || month > 12)
