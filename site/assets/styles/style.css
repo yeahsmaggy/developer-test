@@ -1,0 +1,156 @@
+html {
+    background-color: #EEEEEE;
+}
+
+body {
+    font-family: arial;
+    font-size: 18px;
+    padding: 0px;
+    margin: 0px;
+}
+
+h1, h2,h3, label {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 35px;
+}
+
+h2 {
+    font-size: 23px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h4 {
+    margin-bottom: 5px;
+}
+
+label {
+    font-size: 18px;
+    margin: 20px 0px 8px 0px;
+}
+
+.radios,.name,.telephone-number {
+    display: flex;
+    flex-direction: column;
+}
+
+.radios label {
+    background-color: #DEE0E2;
+    padding: 20px;
+    font-weight: normal;
+    display: inline-table;
+    margin: 5px 0px;
+    font-size: 16px;
+}
+
+header {
+    background: #219793;
+    height: 75px;
+    color: white;
+}
+
+.day-month-year {
+    display: flex;
+    flex-direction: row;
+}
+
+.day-month-year div label {
+    display: flex;
+}
+
+.day-month-year div input {
+    margin-right: 12px;
+}
+
+.error, .required {
+    color: #B10D1E;
+}
+
+.date-tip {
+    color: #798084;
+}
+
+input[type="text"] {
+    width: 355px;
+    height: 30px;
+    padding: 0px 8px;
+    font-size: 16px;
+    border: 1px solid #BBBBBB;
+}
+
+#day, #month {
+    width: 46px;
+}
+
+#year {
+    width: 92px;
+}
+
+button[type="submit"] {
+    background: #219793;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.container {
+    margin: 0 auto;
+    width: 1080px;
+    display: block;
+}
+
+.logo {
+    background: url(assets/logo@2x.png) no-repeat top left;
+    background-size: 185px 46px;
+    width: 185px;
+    height: 46px;
+    margin: 14px 50px;
+    float: left;
+}
+
+div.breadcrumb {
+    background: #515050;
+    color: white;
+    padding: 10px 0px;
+}
+
+.row {
+    display: flex;
+    background: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.col {
+    padding: 0px 50px;
+    position: relative;
+    min-height: 1px;
+}
+
+.main-content {
+    width: 515px;
+}
+
+.sidebar-title {
+    margin-top: 0px;
+}
+
+*:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: #FCBE47 solid 2px;
+}
+
+/*		input[type=submit]:focus{
+		outline: #FCBE47 solid 2px;
+		}*/
+.btn-submit {
+    margin: 50px 10px 0px 0px;
+}

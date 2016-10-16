@@ -7,119 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 		<title>Somewhereshire County Council</title>
 		<link rel="shortcut icon" href="images/favicon.png">
-		<style>
-		html{
-			background-color:#EEEEEE;
-		}
-		body {
-			font-family:arial;
-			font-size:18px;
-			padding: 0px;
-			margin: 0px;
-		}
-		h1, h2,h3, label{
-		font-weight: bold;
-		}
-		h1 {font-size:35px;}
-		h2 {font-size:23px;}
-		h3 {font-size:18px;}
-		h4{margin-bottom: 5px;}
-		label {font-size:18px;
-		    margin: 20px 0px 8px 0px;}
-		.radios,.name,.telephone-number {
-			display: flex;
-				flex-direction: column;
-		}
-		.radios label{
-			background-color: #DEE0E2;
-			padding:20px;
-			font-weight: normal;
-			display: inline-table;
-			margin:5px 0px;
-			font-size: 16px;
-		}
-		header{
-			background: #219793;
-			height:75px;
-			color:white;
-		}
-		.day-month-year {
-			display: flex;
-			flex-direction: row;
-		}
-		.day-month-year div label {
-			display: flex;
-		}
-		.day-month-year div input {
-			margin-right: 12px;
-		}
-		.error, .required{color:#B10D1E;}
-		.date-tip{
-			color:#798084;
-		}
-		input[type="text"]{
-			width: 355px;
-				height: 30px;
-				padding: 0px 8px;
-				font-size: 16px;
-		}
-		#day, #month {
-			width:46px;
-		}
-		#year {width:92px;}
-		button[type="submit"]{
-			background: #219793;
-			color:white;
-			padding:10px;
-			font-size:16px;
-		}
-		.container {
-			
-			margin:0 auto;
-			width:1080px;
-			display: block;
-		}
-		.logo
-		{
-			background:url(assets/logo@2x.png) no-repeat top left;
-			background-size:185px 46px;
-			width:185px;
-			height:46px;
-		    margin: 14px 50px;
-		    float: left;
-		}		
-		div.breadcrumb {
-			background:#515050;
-			color:white;
-			padding:10px 0px;
-		}
-		.row  {
-			 display: flex;
-			 background:white;
-			padding-top: 50px;
-			padding-bottom: 50px;
-		}
-		.col {
-			padding:0px 50px;
-			position: relative;
-			min-height: 1px;
-		}
-		.main-content{width:515px;}
-		.sidebar-title {margin-top:0px;}
-
-		*:focus {
-		outline: none;
-		}
-		input:focus {
-		outline: #FCBE47 solid 2px;
-		}
-		input[type=submit]:focus{
-		outline: #FCBE47 solid 2px;
-		}
-		.btn-submit {
-			margin:50px 10px 0px 0px;
-		}
-		</style>
+		<link href="assets/styles/style.css" rel="stylesheet">
 	</head>
 	<body>
 		<header>
@@ -192,9 +80,10 @@
 
 						<label for="">Date of birth<span class="required">*</span></label><br>
 						<span class="date-tip">For example, 19 1 1972</span><br>
-						<span class="date-of-birth error">Please fill your date of birth</span>
+						<span id="date-of-birth-error" class="error"></span>
 						
 						<div class="day-month-year">
+
 							<div>
 								<label for="day">Day</label>
 								<input id="day" type="text">
@@ -216,65 +105,9 @@
 					<a href="#">Back</a>
 					</p>
 				</form>
-
-
-					<script type="text/javascript">
-						
-						function validateMyForm()
-							{
-
-							document.getElementById("radio-error").style.display = 'none';
-							document.getElementById("first-name-error").style.display = 'none';
-							document.getElementById("last-name-error").style.display = 'none';
-							document.getElementById("telephone-number-error").style.display = 'none';
-
-							var error = true;
-							var radios = document.getElementsByName("choices");
-
-							for (var i = 0, length = radios.length; i < length; i++) {
-							    if (radios[i].checked) {
-							        //alert(radios[i].value);
-							        error = false;
-							        break;
-							    }
-							}
-
-							if(error){
-								error +="Please check a checkbox";
-								document.getElementById("radio-error").style.display = 'block';
-							}
-
-							var firstName = document.getElementById('first-name').value; 
-						    if(!firstName.match(/\S/)) {
-								error +="Please fill in your first name";
-								document.getElementById("first-name-error").style.display = 'block';
-						    }
-
-							var lastName = document.getElementById('last-name').value; 
-						    if(!lastName.match(/\S/)) {
-								error +="Please fill in your last name";
-								document.getElementById("last-name-error").style.display = 'block';
-						    }
-
-							var telephone = document.getElementById('telephone-number').value; 
-
-							if(isNaN(telephone)){
-								error +="Telephone number must be a number";
-								document.getElementById("telephone-number-error").style.display = 'block';
-							}
-
-							if(error)
-							{ 
-								event.preventDefault();
-								return false;
-							}
-							  	return true;
-							}
-
-					</script>
 			</div>
 		</div>
 		</main>
 	</body>
-
+<script type="text/javascript" src="assets/scripts/script.js"></script>
 </html>
